@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.client.model.obj.OBJLoader;
 
-public class ClientProxyAssassinsCrownReborn implements IProxyAssassinsCrownReborn {
+public class ClientProxyAssassinscrownrebornMod implements IProxyAssassinscrownrebornMod {
 	@Override
 	public void init(FMLInitializationEvent event) {
 	}

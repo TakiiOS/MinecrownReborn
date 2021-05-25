@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Retention;
 
-public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerator {
+public class ElementsAssassinscrownrebornMod implements IFuelHandler, IWorldGenerator {
 	public final List<ModElement> elements = new ArrayList<>();
 	public final List<Supplier<Block>> blocks = new ArrayList<>();
 	public final List<Supplier<Item>> items = new ArrayList<>();
@@ -53,23 +53,23 @@ public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerat
 	public final List<Supplier<EntityEntry>> entities = new ArrayList<>();
 	public final List<Supplier<Potion>> potions = new ArrayList<>();
 	public static Map<ResourceLocation, net.minecraft.util.SoundEvent> sounds = new HashMap<>();
-	public ElementsAssassinsCrownReborn() {
+	public ElementsAssassinscrownrebornMod() {
 	}
 
 	public void preInit(FMLPreInitializationEvent event) {
 		try {
 			for (ASMDataTable.ASMData asmData : event.getAsmData().getAll(ModElement.Tag.class.getName())) {
 				Class<?> clazz = Class.forName(asmData.getClassName());
-				if (clazz.getSuperclass() == ElementsAssassinsCrownReborn.ModElement.class)
-					elements.add((ElementsAssassinsCrownReborn.ModElement) clazz.getConstructor(this.getClass()).newInstance(this));
+				if (clazz.getSuperclass() == ElementsAssassinscrownrebornMod.ModElement.class)
+					elements.add((ElementsAssassinscrownrebornMod.ModElement) clazz.getConstructor(this.getClass()).newInstance(this));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Collections.sort(elements);
-		elements.forEach(ElementsAssassinsCrownReborn.ModElement::initElements);
-		this.addNetworkMessage(AssassinsCrownRebornVariables.WorldSavedDataSyncMessageHandler.class,
-				AssassinsCrownRebornVariables.WorldSavedDataSyncMessage.class, Side.SERVER, Side.CLIENT);
+		elements.forEach(ElementsAssassinscrownrebornMod.ModElement::initElements);
+		this.addNetworkMessage(AssassinscrownrebornModVariables.WorldSavedDataSyncMessageHandler.class,
+				AssassinscrownrebornModVariables.WorldSavedDataSyncMessage.class, Side.SERVER, Side.CLIENT);
 	}
 
 	public void registerSounds(RegistryEvent.Register<net.minecraft.util.SoundEvent> event) {
@@ -95,13 +95,13 @@ public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerat
 	@SubscribeEvent
 	public void onPlayerLoggedIn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event) {
 		if (!event.player.world.isRemote) {
-			WorldSavedData mapdata = AssassinsCrownRebornVariables.MapVariables.get(event.player.world);
-			WorldSavedData worlddata = AssassinsCrownRebornVariables.WorldVariables.get(event.player.world);
+			WorldSavedData mapdata = AssassinscrownrebornModVariables.MapVariables.get(event.player.world);
+			WorldSavedData worlddata = AssassinscrownrebornModVariables.WorldVariables.get(event.player.world);
 			if (mapdata != null)
-				AssassinsCrownReborn.PACKET_HANDLER.sendTo(new AssassinsCrownRebornVariables.WorldSavedDataSyncMessage(0, mapdata),
+				AssassinscrownrebornMod.PACKET_HANDLER.sendTo(new AssassinscrownrebornModVariables.WorldSavedDataSyncMessage(0, mapdata),
 						(EntityPlayerMP) event.player);
 			if (worlddata != null)
-				AssassinsCrownReborn.PACKET_HANDLER.sendTo(new AssassinsCrownRebornVariables.WorldSavedDataSyncMessage(1, worlddata),
+				AssassinscrownrebornMod.PACKET_HANDLER.sendTo(new AssassinscrownrebornModVariables.WorldSavedDataSyncMessage(1, worlddata),
 						(EntityPlayerMP) event.player);
 		}
 	}
@@ -109,9 +109,9 @@ public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerat
 	@SubscribeEvent
 	public void onPlayerChangedDimension(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent event) {
 		if (!event.player.world.isRemote) {
-			WorldSavedData worlddata = AssassinsCrownRebornVariables.WorldVariables.get(event.player.world);
+			WorldSavedData worlddata = AssassinscrownrebornModVariables.WorldVariables.get(event.player.world);
 			if (worlddata != null)
-				AssassinsCrownReborn.PACKET_HANDLER.sendTo(new AssassinsCrownRebornVariables.WorldSavedDataSyncMessage(1, worlddata),
+				AssassinscrownrebornMod.PACKET_HANDLER.sendTo(new AssassinscrownrebornModVariables.WorldSavedDataSyncMessage(1, worlddata),
 						(EntityPlayerMP) event.player);
 		}
 	}
@@ -119,7 +119,7 @@ public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerat
 	public <T extends IMessage, V extends IMessage> void addNetworkMessage(Class<? extends IMessageHandler<T, V>> handler, Class<T> messageClass,
 			Side... sides) {
 		for (Side side : sides)
-			AssassinsCrownReborn.PACKET_HANDLER.registerMessage(handler, messageClass, messageID, side);
+			AssassinscrownrebornMod.PACKET_HANDLER.registerMessage(handler, messageClass, messageID, side);
 		messageID++;
 	}
 	public static class GuiHandler implements IGuiHandler {
@@ -160,9 +160,9 @@ public class ElementsAssassinsCrownReborn implements IFuelHandler, IWorldGenerat
 		@Retention(RetentionPolicy.RUNTIME)
 		public @interface Tag {
 		}
-		protected final ElementsAssassinsCrownReborn elements;
+		protected final ElementsAssassinscrownrebornMod elements;
 		protected final int sortid;
-		public ModElement(ElementsAssassinsCrownReborn elements, int sortid) {
+		public ModElement(ElementsAssassinscrownrebornMod elements, int sortid) {
 			this.elements = elements;
 			this.sortid = sortid;
 		}

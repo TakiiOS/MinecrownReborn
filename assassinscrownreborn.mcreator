@@ -6,6 +6,10 @@
   "language_map": {
     "en_us": {}
   },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
   "workspaceSettings": {
     "modid": "assassinscrownreborn",
     "modName": "Assassin\u0027s Crown Reborn",
@@ -22,5 +26,5 @@
     "modElementsPackage": "net.taki.assassinscrownreborn",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202000214217
+  "mcreatorVersion": 202100116710
 }
