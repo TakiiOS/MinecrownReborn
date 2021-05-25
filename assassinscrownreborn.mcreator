@@ -1,21 +1,10 @@
 {
   "id_map": {},
-  "mod_elements": [
-    {
-      "name": "Item",
-      "type": "item",
-      "sortid": 1,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {}
-    }
-  ],
+  "mod_elements": [],
   "variable_elements": [],
   "sound_elements": [],
   "language_map": {
-    "en_us": {
-      "item.item.name": "Item"
-    }
+    "en_us": {}
   },
   "workspaceSettings": {
     "modid": "assassinscrownreborn",
